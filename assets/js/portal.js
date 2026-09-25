@@ -1662,8 +1662,8 @@
       document.body.style.overflow = "hidden";
     };
 
-    const closeSidebar = (e) => {
-      if (e) e.preventDefault();
+    const closeSidebar = (e, shouldPreventDefault = true) => {
+      if (e && shouldPreventDefault) e.preventDefault();
       const currentSidebar = sidebar || document.getElementById("portal-sidebar");
       const currentBackdrop = backdrop || document.getElementById("portal-sidebar-backdrop");
       if (currentSidebar) currentSidebar.classList.remove("open");
@@ -1688,7 +1688,7 @@
         return;
       }
       if (window.innerWidth <= 900 && e.target.closest("#portal-sidebar a")) {
-        closeSidebar(e);
+        closeSidebar(e, false);
       }
     });
   }
